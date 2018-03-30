@@ -1,0 +1,32 @@
+- name: create elk vs
+  bigip_virtual_server:
+    name: vs_elk_https
+    state: absent
+- name: create hackazon VS
+  bigip_virtual_server:
+    name: vs_hackazon_https
+    state: absent
+- name: undeploy hackazon HTTP REDIRECT VS
+  bigip_virtual_server:
+    name: vs_hackazon_redir_http
+    state: absent
+- name: undeploy elk svr pool
+  bigip_pool:
+    name: pool_elk
+    state: absent
+- name: undeploy hackazon svr pool
+  bigip_pool:
+    name: pool_hackazon
+    state: absent
+- name: undeploy app monitor for hackazon
+  bigip_monitor_http:
+    name: hackazon_http_monitor
+    state: absent
+- name: undeploy l7 policy
+  bigip_policy:
+    name: hackazon_l7_policy
+    state: absent
+- name: undeploy asm policy
+  bigip_asm_policy:
+    name: hackazon_waap_policy
+    state: absent

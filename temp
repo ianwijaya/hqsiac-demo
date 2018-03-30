@@ -1,0 +1,9 @@
+- name: Cleaning UP
+  file:
+     path: "{{ item }}"
+     state: absent
+  with_items:
+    - '/var/tmp/azure-{{namespace}}-web.ip'
+    - '/var/tmp/azure-{{namespace}}-elk.ip'
+    - '/var/tmp/azure-{{namespace}}-waap.ip'
+    - '/var/tmp/azure-{{namespace}}-db.ip'

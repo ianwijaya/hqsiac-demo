@@ -1,0 +1,19 @@
+- hosts: localhost
+  gather_facts: no
+  strategy: free
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: install f5-sdk
+      local_action: shell pip install f5-sdk bigsuds netaddr
+      become: yes
+      become_method: sudo
+    - set_fact: #override vars_files variables only for Azure deployment.
+        f5_host: "{{lookup('file', '/var/tmp/azure-'+namespace+'-waap.ip' ) }}"
+    - include_tasks: configuration/hackazon-f5waap-provisioning.yml
+      environment:
+        F5_USER: '{{ admin_username }}'
+        F5_PASSWORD: '{{ admin_password }}'
+        F5_SERVER:  "{{ f5_host }}"
+        F5_SERVER_PORT: '8443'
+        F5_VALIDATE_CERTS: 'no'
