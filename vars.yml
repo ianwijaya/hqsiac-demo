@@ -23,7 +23,7 @@ virtual_network: 10.10.40.0/23
 svr_subnet: 10.10.40.0/24
 ssh_key: 'ssh-rsa <your ssh key here> ansible@master'
 admin_username: ansible
-admin_password: M@yoraTomang #use strong password, 12 char, contain special char and capital
+admin_password: Mypassword123 #use strong password, 12 char, contain special char and capital
 #pick a globally unique account, all with lower case and no special character
 storage_account: myStorageAccount30232
 owner: 'Me'
